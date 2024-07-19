@@ -10,9 +10,6 @@ import type { Options } from "./index";
   let permissionValue = "default";
   // CHANGE: below(1): "granted"
   permissionValue = "granted";
-
-  // CHANGE: below(1): return
-  return;
   
   async function isPermissionGranted(): Promise<boolean> {
     // CHANGE: below(1): return true;
@@ -50,6 +47,9 @@ import type { Options } from "./index";
       return permission;
     });
   }
+
+  // CHANGE (NEW): below(1): return
+  return;
 
   async function sendNotification(options: string | Options): Promise<void> {
     if (typeof options === "object") {
