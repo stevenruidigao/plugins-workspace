@@ -48,8 +48,6 @@ import type { Options } from "./index";
     });
   }
 
-  // CHANGE was here
-
   async function sendNotification(options: string | Options): Promise<void> {
     if (typeof options === "object") {
       Object.freeze(options);
@@ -65,8 +63,7 @@ import type { Options } from "./index";
     });
   }
 
-  // CHANGE (NEW): below(1): return
-  return;
+  // CHANGE was here
 
   // @ts-expect-error unfortunately we can't implement the whole type, so we overwrite it with our own version
   window.Notification = function (title, options) {
@@ -80,6 +77,9 @@ import type { Options } from "./index";
       }),
     );
   };
+
+  // CHANGE (NEW): below(1): return
+  return;
 
   // @ts-expect-error tauri does not have sync IPC :(
   window.Notification.requestPermission = requestPermission;
