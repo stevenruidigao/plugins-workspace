@@ -8,8 +8,8 @@ import type { Options } from "./index";
 (function () {
   let permissionSettable = false;
   let permissionValue = "default";
-  // CHANGE: below(1): "granted"
-  permissionValue = "granted";
+  // CHANGE: below(1): "granted" (temp disabled)
+  // permissionValue = "granted";
   
   async function isPermissionGranted(): Promise<boolean> {
     // CHANGE: below(1): return true (temp disabled)
