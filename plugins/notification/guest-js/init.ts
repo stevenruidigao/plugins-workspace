@@ -63,8 +63,6 @@ import type { Options } from "./index";
     });
   }
 
-  // CHANGE was here
-
   // @ts-expect-error unfortunately we can't implement the whole type, so we overwrite it with our own version
   window.Notification = function (title, options) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -78,11 +76,13 @@ import type { Options } from "./index";
     );
   };
 
-  // CHANGE (NEW): below(1): return
-  return;
+  // CHANGE was here
 
   // @ts-expect-error tauri does not have sync IPC :(
   window.Notification.requestPermission = requestPermission;
+
+  // CHANGE (NEW): below(1): return
+  return;
 
   Object.defineProperty(window.Notification, "permission", {
     enumerable: true,
