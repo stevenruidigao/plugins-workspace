@@ -81,9 +81,6 @@ import type { Options } from "./index";
   // @ts-expect-error tauri does not have sync IPC :(
   window.Notification.requestPermission = requestPermission;
 
-  // CHANGE (NEW): below(1): return
-  return;
-
   Object.defineProperty(window.Notification, "permission", {
     enumerable: true,
     get: () => permissionValue,
@@ -95,6 +92,9 @@ import type { Options } from "./index";
       permissionValue = v;
     },
   });
+
+  // CHANGE (NEW): below(1): return
+  return;
 
   // CHANGE: below(1): return
   return;
