@@ -12,7 +12,7 @@ import type { Options } from "./index";
   permissionValue = "granted";
   
   async function isPermissionGranted(): Promise<boolean> {
-    // CHANGE: below(1): return true;
+    // CHANGE: below(1): return true
     return true;
     if (window.Notification.permission !== "default") {
       return await Promise.resolve(
@@ -25,8 +25,8 @@ import type { Options } from "./index";
   function setNotificationPermission(
     value: "granted" | "denied" | "default",
   ): void {
-    // CHANGE: below(1): return
-    return;
+    // CHANGE: below(1): return (temp disabled)
+    // return;
     permissionSettable = true;
     // @ts-expect-error we can actually set this value on the webview
     window.Notification.permission = value;
