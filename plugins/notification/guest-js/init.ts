@@ -40,6 +40,14 @@ import type { Options } from "./index";
       Object.freeze(options);
     }
 
+    void isPermissionGranted().then(function (response) {
+      if (response === null) {
+        setNotificationPermission("default");
+      } else {
+        setNotificationPermission(response ? "granted" : "denied");
+      }
+    });
+
     await invoke("plugin:notification|notify", {
       options:
         typeof options === "string"
@@ -76,13 +84,5 @@ import type { Options } from "./index";
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       permissionValue = v;
     },
-  });
-
-  void isPermissionGranted().then(function (response) {
-    if (response === null) {
-      setNotificationPermission("default");
-    } else {
-      setNotificationPermission(response ? "granted" : "denied");
-    }
   });
 })();
