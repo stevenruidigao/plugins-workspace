@@ -6,30 +6,22 @@ import { invoke } from "@tauri-apps/api/core";
 import type { Options } from "./index";
 
 (function () {
-  // CHANGE (NEW): below(1): return
-  return;
-  
   let permissionSettable = false;
   let permissionValue = "default";
-  // CHANGE: below(1): "granted" (temp disabled)
-  // permissionValue = "granted";
-  
+
   async function isPermissionGranted(): Promise<boolean> {
-    // CHANGE: below(1): return true (temp disabled)
-    // return true;
-    if (window.Notification.permission !== "default") {
+    // @ts-expect-error __TEMPLATE_windows__ will be replaced in rust before it's injected.
+    if (window.Notification.permission !== "default" || __TEMPLATE_windows__) {
       return await Promise.resolve(
-        window.Notification.permission === "granted",
+        window.Notification.permission === "granted"
       );
     }
     return await invoke("plugin:notification|is_permission_granted");
   }
 
   function setNotificationPermission(
-    value: "granted" | "denied" | "default",
+    value: "granted" | "denied" | "default"
   ): void {
-    // CHANGE: below(1): return (temp disabled)
-    // return;
     permissionSettable = true;
     // @ts-expect-error we can actually set this value on the webview
     window.Notification.permission = value;
@@ -39,13 +31,11 @@ import type { Options } from "./index";
   async function requestPermission(): Promise<
     "default" | "denied" | "granted" | "prompt"
   > {
-    // CHANGE: below(1): return "granted" (temp disabled)
-    // return "granted";
     return await invoke<"prompt" | "default" | "granted" | "denied">(
-      "plugin:notification|request_permission",
+      "plugin:notification|request_permission"
     ).then((permission) => {
       setNotificationPermission(
-        permission === "prompt" ? "default" : permission,
+        permission === "prompt" ? "default" : permission
       );
       return permission;
     });
@@ -75,11 +65,9 @@ import type { Options } from "./index";
       Object.assign(opts, {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         title,
-      }),
+      })
     );
   };
-
-  // CHANGE was here
 
   // @ts-expect-error tauri does not have sync IPC :(
   window.Notification.requestPermission = requestPermission;
@@ -96,8 +84,6 @@ import type { Options } from "./index";
     },
   });
 
-  // CHANGE: below(1): return
-  return;
   void isPermissionGranted().then(function (response) {
     if (response === null) {
       setNotificationPermission("default");
