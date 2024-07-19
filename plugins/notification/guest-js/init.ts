@@ -6,14 +6,14 @@ import { invoke } from "@tauri-apps/api/core";
 import type { Options } from "./index";
 
 (function () {
-  // CHANGE: below(1): return
-  return;
-  
   let permissionSettable = false;
   let permissionValue = "default";
   // CHANGE: below(1): "granted"
   permissionValue = "granted";
 
+  // CHANGE: below(1): return
+  return;
+  
   async function isPermissionGranted(): Promise<boolean> {
     // CHANGE: below(1): return true;
     return true;
