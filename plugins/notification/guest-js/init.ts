@@ -12,8 +12,8 @@ import type { Options } from "./index";
   permissionValue = "granted";
   
   async function isPermissionGranted(): Promise<boolean> {
-    // CHANGE: below(1): return true
-    return true;
+    // CHANGE: below(1): return true (temp disabled)
+    // return true;
     if (window.Notification.permission !== "default") {
       return await Promise.resolve(
         window.Notification.permission === "granted",
