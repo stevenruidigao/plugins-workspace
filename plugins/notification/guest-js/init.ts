@@ -36,8 +36,8 @@ import type { Options } from "./index";
   async function requestPermission(): Promise<
     "default" | "denied" | "granted" | "prompt"
   > {
-    // CHANGE: below(1): return "granted"
-    return "granted";
+    // CHANGE: below(1): return "granted" (temp disabled)
+    // return "granted";
     return await invoke<"prompt" | "default" | "granted" | "denied">(
       "plugin:notification|request_permission",
     ).then((permission) => {
